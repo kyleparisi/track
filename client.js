@@ -1,4 +1,5 @@
-var request = require("request");
+const request = require("request");
+const debug = require("debug")(process.env.DEBUG_NAMESPACE);
 
 module.exports = function(req, res) {
   if (req.path.search(/\./) !== -1) {
@@ -28,9 +29,9 @@ module.exports = function(req, res) {
     },
     function(error, response) {
       if (error) {
-        console.log(error);
+        debug(error);
       }
-      console.log(response);
+      debug("Hook success");
     }
   );
 };
