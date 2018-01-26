@@ -10,13 +10,14 @@
   "author": "Kyle Parisi (http://blog.kyleparisi.com)",
   "license": "ISC",
   "dependencies": {
+    "authed_resource": "github:kyleparisi/authed_resource",
     "aws-sdk": "^2.185.0",
     "body-parser": "^1.18.2",
     "debug": "^3.1.0",
     "dotenv": "^4.0.0",
     "elasticsearch": "^14.0.0",
-    "express": "^4.16.2",
     "http-aws-es": "^4.0.0",
+    "identity": "github:kyleparisi/identity",
     "request": "^2.83.0"
   }
 }

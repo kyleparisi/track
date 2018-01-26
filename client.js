@@ -1,5 +1,6 @@
 const request = require("request");
-const debug = require("debug")(process.env.DEBUG_NAMESPACE);
+const debug = require("debug")(process.env.DEBUG_NAMESPACE + ":track");
+const getIdentity = require("identity");
 
 module.exports = function(req, res) {
   if (req.path.search(/\./) !== -1) {
@@ -25,9 +26,12 @@ module.exports = function(req, res) {
       method: "post",
       body: data,
       json: true,
-      url: process.env.SERVER_URL
+      url: process.env.SERVER_URL,
+      auth: {
+        bearer: getIdentity().access_token
+      }
     },
-    function(error, response) {
+    function(error) {
       if (error) {
         debug(error);
       }

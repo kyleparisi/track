@@ -1,7 +1,6 @@
-const debug = require("debug")(process.env.DEBUG_NAMESPACE);
+const debug = require("debug")(process.env.DEBUG_NAMESPACE + ":track");
 global.debug = debug;
-const express = require("express");
-const app = express();
+const app = require("authed_resource");
 const AWS = require("aws-sdk");
 const bodyParser = require("body-parser");
 AWS.config.region = process.env.AWS_REGION;
@@ -48,7 +47,3 @@ app.post("/*", bodyParser.json(), function(req, res) {
     }
   );
 });
-
-app.listen(process.env.PORT, () =>
-  debug("Server listening on %s", process.env.PORT)
-);
