@@ -33,7 +33,7 @@ module.exports = function(req, res) {
     },
     function(error) {
       if (error) {
-        debug(error);
+        debug("Error: " + error);
       }
       debug("Hook success");
     }
