@@ -21,21 +21,23 @@ module.exports = function(req, res) {
   data.user_id = req.user._json.sub;
   data.path = req.path;
 
-  request(
-    {
-      method: "post",
-      body: data,
-      json: true,
-      url: process.env.SERVER_URL,
-      auth: {
-        bearer: getIdentity().access_token
+  getIdentity(function(token) {
+    request(
+      {
+        method: "post",
+        body: data,
+        json: true,
+        url: process.env.SERVER_URL,
+        auth: {
+          bearer: token
+        }
+      },
+      function(error) {
+        if (error) {
+          debug("Error: " + error);
+        }
+        debug("Hook success");
       }
-    },
-    function(error) {
-      if (error) {
-        debug("Error: " + error);
-      }
-      debug("Hook success");
-    }
-  );
+    );
+  });
 };
