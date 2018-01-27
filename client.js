@@ -29,7 +29,7 @@ module.exports = function(req, res) {
         json: true,
         url: process.env.SERVER_URL,
         auth: {
-          bearer: token
+          bearer: token.access_token
         }
       },
       function(error) {
